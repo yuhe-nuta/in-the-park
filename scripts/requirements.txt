@@ -1,0 +1,8 @@
+numpy==2.0.2
+onnxruntime==1.19.2
+opencv-python-headless==4.13.0.92
+pillow==11.3.0
+pooch==1.9.0
+PyMatting==1.1.15
+rembg==2.0.61
+scipy==1.13.1
