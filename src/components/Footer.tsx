@@ -3,7 +3,7 @@ const LINKS = [
   { href: '#achievement', label: '実績' },
   { href: '#content', label: 'コンテンツ' },
   { href: '#sns', label: 'SNS' },
-  { href: '#audience', label: '視聴者層' },
+  { href: '#ramen', label: 'ラーメン探求' },
   { href: '#contact', label: 'お仕事のご依頼' },
   { href: '#', label: 'プライバシーポリシー' },
 ]

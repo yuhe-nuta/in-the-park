@@ -4,7 +4,7 @@ import { About } from './components/About'
 import { Achievement } from './components/Achievement'
 import { Content } from './components/Content'
 import { Sns } from './components/Sns'
-import { Audience } from './components/Audience'
+import { RamenQuest } from './components/RamenQuest'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { useReveal } from './hooks/useReveal'
@@ -22,8 +22,8 @@ function App() {
       <About />
       <Achievement />
       <Content />
+      <RamenQuest />
       <Sns />
-      <Audience />
       <Contact />
       <Footer />
     </>

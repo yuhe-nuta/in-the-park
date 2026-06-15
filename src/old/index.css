@@ -302,8 +302,17 @@ section {
 /* mobile: hero photo becomes the top-anchored hero image — the most
    prominent element on the screen — with text content flowing below it */
 @media (max-width: 767px) {
+  /* tighten the top padding so the headline lands just below the members'
+     faces, and the stats/buttons stay within the first view */
+  #hero {
+    padding: clamp(168px, 23svh, 220px) 18px 56px;
+    /* fit the hero to its content so there's no empty band below the CTAs
+       on tall phones (the forced 100svh left a gap once the bowl was hidden) */
+    min-height: auto;
+  }
+  /* hide the decorative ramen bowl animation entirely on phones */
   .hero-bowl-bg {
-    opacity: 0.065;
+    display: none;
   }
   /* anchor the cut-out figures to the TOP of the screen, fit to width so the
      members fill the narrow viewport and are the first thing seen */
@@ -323,57 +332,96 @@ section {
   #hero::after {
     background: linear-gradient(
       to bottom,
-      rgba(255, 253, 245, 0.1) 0%,
-      rgba(255, 253, 245, 0.3) 32%,
-      rgba(255, 253, 245, 0.85) 58%,
-      rgba(255, 253, 245, 0.95) 100%
+      rgba(255, 253, 245, 0.08) 0%,
+      rgba(255, 253, 245, 0.28) 30%,
+      rgba(255, 253, 245, 0.86) 54%,
+      rgba(255, 253, 245, 0.96) 100%
     );
   }
-  /* keep the three stat cards on a single row, each flexing to share the
-     viewport width evenly instead of wrapping */
-  .hero-stats {
-    flex-wrap: nowrap;
-    gap: 6px;
+  /* headline must stay on ONE line at narrow widths (6 full-width glyphs);
+     #hero raises specificity over the base .hero-name rule below */
+  #hero .hero-name {
+    font-size: clamp(2.9rem, 12.5vw, 4.2rem);
+    white-space: nowrap;
   }
-  /* shrink only the horizontal padding so the cards fit a narrow viewport;
-     keep the vertical padding at the PC value (14px) so height is unchanged */
-  .hero-stats .stat-card {
+  /* mobile only: present the tagline on a gold (#F5A623) band. A soft,
+     blurred gold glow feathers the hard pill edge so it blends into the
+     cream / gold hero gradient instead of sitting as a sharp block */
+  #hero .hero-sub {
+    margin-bottom: 28px;
+    align-self: center;
+    display: inline-block;
+    position: relative;
+    background: rgba(245, 166, 35, 0.9);
+    color: var(--dark);
+    padding: 7px 20px;
+    border-radius: 999px;
+    letter-spacing: 0.14em;
+    box-shadow:
+      0 0 14px 5px rgba(245, 166, 35, 0.5),
+      0 0 34px 16px rgba(245, 166, 35, 0.3);
+  }
+  /* extra blurred gold halo behind the band for a soft, blended frame */
+  #hero .hero-sub::before {
+    content: '';
+    position: absolute;
+    inset: -5px -10px;
+    background: var(--gold);
+    border-radius: inherit;
+    filter: blur(11px);
+    opacity: 0.55;
+    z-index: -1;
+  }
+  /* SNS numbers are the headline act of the first view — give the three cards
+     the full width and big, legible figures instead of cramming them tiny */
+  #hero .hero-stats {
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  #hero .hero-stats .stat-card {
     flex: 1 1 0;
     min-width: 0;
-    padding: 14px 6px;
-    /* pin to the exact PC card height (measured 112px) and centre the content,
-       so sub-pixel line rounding at narrow widths can't change the height */
-    height: 112px;
+    padding: 16px 6px;
+    border-radius: 16px;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 5px;
   }
-  /* the number + unit (e.g. "12.9万人") must stay on ONE line: if it wraps the
-     card grows taller than PC. nowrap + a small enough font keeps it single-
-     line, and line-height pinned to the PC line box (2.5rem) keeps height = PC */
-  .hero-stats .stat-num {
-    font-size: clamp(0.72rem, 3.8vw, 1.4rem);
-    line-height: 2.5rem;
+  #hero .hero-stats .stat-platform {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+    margin: 0;
     white-space: nowrap;
   }
-  .hero-stats .stat-unit {
-    font-size: 0.6em;
-  }
-  /* the card height is now fixed (above), so the labels can be scaled down to
-     fit the narrow width and show in full on one line, without affecting height.
-     ellipsis stays only as a last-resort guard against overflow. */
-  .hero-stats .stat-platform,
-  .hero-stats .stat-lbl {
+  /* big, bold figure — the number + unit stay on one line */
+  #hero .hero-stats .stat-num {
+    font-size: clamp(1.55rem, 7.6vw, 2.2rem);
+    line-height: 1;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
-  .hero-stats .stat-platform {
-    font-size: clamp(0.42rem, 1.7vw, 0.64rem);
-    letter-spacing: 0.08em;
+  #hero .hero-stats .stat-unit {
+    font-size: 0.46em;
+    margin-left: 1px;
   }
-  .hero-stats .stat-lbl {
-    font-size: clamp(0.4rem, 1.7vw, 0.65rem);
+  #hero .hero-stats .stat-lbl {
+    font-size: 0.56rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+  /* full-width stacked CTAs make comfortable tap targets on a phone */
+  #hero .hero-btns {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #hero .hero-btns .btn {
+    width: 100%;
+    text-align: center;
   }
 }
 .hero-name {
