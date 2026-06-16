@@ -347,33 +347,68 @@ section {
     font-size: clamp(2.9rem, 12.5vw, 4.2rem);
     white-space: nowrap;
   }
-  /* mobile only: present the tagline on a gold (#F5A623) band. A soft,
-     blurred gold glow feathers the hard pill edge so it blends into the
-     cream / gold hero gradient instead of sitting as a sharp block */
+  /* mobile only: a refined "specialty shop" tagline chip — a crisp dark
+     lozenge with a hairline gold frame and gold text, flanked by short gold
+     rules. Replaces the fuzzy gold glow (which read as cheap) with a sharp,
+     premium noren-style mark that pops against the photo */
+  /* mobile only: the tagline is a CAPTION, not a control — no hard card
+     chrome that would read as a tappable button. Legibility over the photo
+     comes from a cream halo on the text plus a soft, edgeless cream wash
+     behind it (feathered radial — no border, so it never looks like a chip). */
   #hero .hero-sub {
-    margin-bottom: 28px;
+    margin: 6px 0 28px;
     align-self: center;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    white-space: nowrap;
+    max-width: 100%;
     position: relative;
-    background: rgba(245, 166, 35, 0.9);
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 6px 14px;
     color: var(--dark);
-    padding: 7px 20px;
-    border-radius: 999px;
-    letter-spacing: 0.14em;
-    box-shadow:
-      0 0 14px 5px rgba(245, 166, 35, 0.5),
-      0 0 34px 16px rgba(245, 166, 35, 0.3);
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 0.84rem;
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
+    text-shadow:
+      0 0 6px var(--cream),
+      0 0 10px var(--cream),
+      0 1px 2px rgba(255, 253, 245, 0.9);
   }
-  /* extra blurred gold halo behind the band for a soft, blended frame */
+  /* soft, edgeless cream wash behind the caption — fades to transparent so
+     there's no button-like boundary, just enough to lift the text off the photo */
   #hero .hero-sub::before {
     content: '';
     position: absolute;
-    inset: -5px -10px;
-    background: var(--gold);
-    border-radius: inherit;
-    filter: blur(11px);
-    opacity: 0.55;
+    inset: -8px -6px;
     z-index: -1;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 253, 245, 0.92) 0%,
+      rgba(255, 253, 245, 0.82) 42%,
+      rgba(255, 253, 245, 0.45) 70%,
+      rgba(255, 253, 245, 0) 100%
+    );
+    filter: blur(2px);
+  }
+  /* short gold rule UNDER the caption (centered), echoing the gold accent —
+     stays crisp over the photo with a small cream glow */
+  #hero .hero-sub::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gold);
+    box-shadow: 0 0 5px var(--cream);
   }
   /* SNS numbers are the headline act of the first view — give the three cards
      the full width and big, legible figures instead of cramming them tiny */

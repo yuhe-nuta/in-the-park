@@ -4,8 +4,8 @@ const LINKS = [
   { href: '#about', label: 'コンビ紹介', mobileLabel: 'コンビ紹介' },
   { href: '#achievement', label: '実績', mobileLabel: '実績・受賞歴' },
   { href: '#content', label: 'コンテンツ', mobileLabel: 'コンテンツ' },
-  { href: '#sns', label: 'SNS', mobileLabel: 'SNS実績' },
   { href: '#ramen', label: 'ラーメン探求', mobileLabel: '師匠のラーメン探求' },
+  { href: '#sns', label: 'SNS', mobileLabel: 'SNS実績' },
 ]
 
 export function Nav() {
