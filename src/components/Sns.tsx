@@ -41,8 +41,8 @@ export function Sns() {
   return (
     <section id="sns">
       <div className="inner">
-        <p className="eyebrow fi">SNS Reach</p>
-        <h2 className="sec-title fi">SNS実績</h2>
+        <p className="eyebrow fi">評判</p>
+        <h2 className="sec-title fi">SNSでの広がり</h2>
         <p className="sec-lead fi">
           各プラットフォームで継続的に成長中。案件担当者の方はぜひご確認ください。
         </p>

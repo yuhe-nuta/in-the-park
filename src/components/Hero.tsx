@@ -1,132 +1,131 @@
-const STATS = [
+import { useCountUp } from '../hooks/useCountUp'
+
+type Stat = {
+  platform: string
+  target: number
+  decimals: number
+  unit: string
+  label: string
+  highlight?: boolean
+}
+
+const STATS: Stat[] = [
   {
-    platform: 'YouTube',
-    num: '12.9',
-    unit: '万人',
-    label: 'チャンネル登録者',
+    platform: 'のべ視聴',
+    target: 2.9,
+    decimals: 1,
+    unit: '億回',
+    label: 'YouTube 累計再生',
     highlight: true,
   },
-  { platform: '累計再生', num: '2.9', unit: '億', label: '総再生回数' },
-  { platform: 'TikTok', num: '170', unit: '万', label: '総いいね数' },
+  { platform: '登録者', target: 12.9, decimals: 1, unit: '万人', label: 'YouTube チャンネル' },
+  { platform: 'いいね', target: 170, decimals: 0, unit: '万', label: 'TikTok 累計' },
 ]
 
-/**
- * Full-bleed member photo for the hero background — the production stand-in
- * for the prototype's drag-and-drop <image-slot>. Pass `src` (e.g. an
- * imported asset) to show the real photo; without it the dashed empty state
- * is shown, matching the unfilled slot in the design.
- */
-function HeroPhoto({ src }: { src?: string }) {
+/** One lacquer stat plaque whose figure counts up on scroll into view. */
+function StatCard({ stat }: { stat: Stat }) {
+  const { ref, display } = useCountUp<HTMLDivElement>(stat.target, stat.decimals)
   return (
-    <div className="hero-img-slot" aria-label="メンバー写真">
-      {src ? (
-        <img className="hero-photo" src={src} alt="インザパークのメンバー" />
-      ) : (
-        <div className="hero-photo-empty">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="m21 15-5-5L5 21" />
-          </svg>
-          <span>📷 メンバー写真（背景中央に表示）</span>
-        </div>
-      )}
+    <div className={`stat-card${stat.highlight ? ' hl' : ''}`}>
+      <div className="stat-platform">{stat.platform}</div>
+      <div className="stat-num" ref={ref}>
+        {display}
+        <span className="stat-unit">{stat.unit}</span>
+      </div>
+      <div className="stat-lbl">{stat.label}</div>
     </div>
+  )
+}
+
+/** A small red chōchin (提灯) lantern, brushed with 「麺」, bobbing by the door. */
+function Lantern() {
+  return (
+    <svg
+      className="hero-lantern"
+      viewBox="0 0 64 92"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <line x1="32" y1="0" x2="32" y2="8" stroke="#2a1d15" strokeWidth="2" />
+      <rect x="20" y="6" width="24" height="6" rx="2" fill="#2a1d15" />
+      <ellipse cx="32" cy="50" rx="26" ry="38" fill="#d83f2c" />
+      <ellipse cx="32" cy="50" rx="26" ry="38" fill="url(#lant-shade)" />
+      <g stroke="#a3241a" strokeWidth="1.4" opacity="0.7">
+        <line x1="7" y1="36" x2="57" y2="36" />
+        <line x1="6" y1="50" x2="58" y2="50" />
+        <line x1="7" y1="64" x2="57" y2="64" />
+      </g>
+      <rect x="22" y="84" width="20" height="6" rx="2" fill="#2a1d15" />
+      <text
+        x="32"
+        y="60"
+        textAnchor="middle"
+        fontFamily="'Yuji Syuku', serif"
+        fontSize="30"
+        fill="#f7ecd6"
+      >
+        麺
+      </text>
+      <defs>
+        <radialGradient id="lant-shade" cx="38%" cy="36%" r="70%">
+          <stop offset="0%" stopColor="#ffb27a" stopOpacity="0.55" />
+          <stop offset="60%" stopColor="#d83f2c" stopOpacity="0" />
+          <stop offset="100%" stopColor="#7a1207" stopOpacity="0.5" />
+        </radialGradient>
+      </defs>
+    </svg>
   )
 }
 
 export function Hero({ photoSrc }: { photoSrc?: string }) {
   return (
     <section id="hero">
-      {/* 背景：メンバー写真（全画面・中央） */}
-      <HeroPhoto src={photoSrc} />
+      {/* のれん（入口の暖簾） */}
+      <div className="noren" aria-hidden="true">
+        {['ら', 'ー', 'め', 'ん'].map((c, i) => (
+          <div className="noren-panel" key={i}>
+            <span>{c}</span>
+          </div>
+        ))}
+      </div>
 
-      {/* 背景：ラーメン丼アニメーション（右下・写真と重なってOK・透過） */}
-      <svg
-        className="hero-bowl-bg"
-        viewBox="0 0 240 220"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <ellipse cx="120" cy="150" rx="105" ry="38" fill="#e8392a" />
-        <path d="M 15 150 Q 120 218 225 150" fill="#C72D1E" />
-        <ellipse cx="120" cy="124" rx="105" ry="32" fill="#F5A623" />
-        <path
-          d="M 30 124 Q 65 104 100 124 Q 135 144 170 124 Q 200 104 210 124"
-          stroke="#e8392a"
-          strokeWidth="5"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <path
-          className="stm"
-          d="M 72 100 C 66 80 78 60 72 40"
-          stroke="#8B7355"
-          strokeWidth="3.5"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <path
-          className="stm"
-          d="M 120 92 C 114 72 126 52 120 32"
-          stroke="#8B7355"
-          strokeWidth="3.5"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <path
-          className="stm"
-          d="M 168 100 C 162 80 174 60 168 40"
-          stroke="#8B7355"
-          strokeWidth="3.5"
-          fill="none"
-          strokeLinecap="round"
-        />
-      </svg>
+      <Lantern />
 
-      {/* 前面コンテンツ */}
+      {/* 湯気 */}
+      <div className="hero-steam s1" aria-hidden="true" />
+      <div className="hero-steam s2" aria-hidden="true" />
+      <div className="hero-steam s3" aria-hidden="true" />
+
+      {/* カウンター */}
+      <div className="hero-counter" aria-hidden="true" />
+
+      {/* 前面コンテンツ（上段） */}
       <div className="hero-content">
-        <div>
-          <h1 className="hero-name">インザパーク</h1>
-          <span className="hero-name-line" />
-        </div>
-
-        <p className="hero-sub">ラーメン屋を舞台にした笑いの専門店</p>
+        <p className="hero-brush">ラーメン屋の師匠</p>
+        <h1 className="hero-name">インザパーク</h1>
+        <p className="hero-sub">
+          ラーメン屋を舞台に、師匠と弟子がお届けする<b>ショートコント専門店</b>。
+        </p>
 
         <div className="hero-stats">
           {STATS.map((s) => (
-            <div
-              key={s.platform}
-              className={`stat-card${s.highlight ? ' hl' : ''}`}
-            >
-              <div className="stat-platform">{s.platform}</div>
-              <div className="stat-num">
-                {s.num}
-                <span className="stat-unit">{s.unit}</span>
-              </div>
-              <div className="stat-lbl">{s.label}</div>
-            </div>
+            <StatCard key={s.platform} stat={s} />
           ))}
         </div>
 
         <div className="hero-btns">
           <a href="#contact" className="btn btn-red">
-            お仕事のご依頼はこちら
+            ご注文（お仕事のご依頼）
           </a>
           <a href="#content" className="btn btn-ghost">
-            動画を見る
+            お品書きを見る
           </a>
         </div>
+      </div>
+
+      {/* 店内：師匠と弟子（カウンターの手前・下段に立つ） */}
+      <div className="hero-staff">
+        {photoSrc && <img src={photoSrc} alt="インザパークのふたり" />}
       </div>
     </section>
   )

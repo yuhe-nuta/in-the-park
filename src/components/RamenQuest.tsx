@@ -33,8 +33,8 @@ export function RamenQuest() {
   return (
     <section id="ramen">
       <div className="inner">
-        <p className="eyebrow fi">Ramen Quest</p>
-        <h2 className="sec-title fi">師匠のラーメン探求</h2>
+        <p className="eyebrow fi">師匠の食べ歩き</p>
+        <h2 className="sec-title fi">ラーメン巡礼</h2>
         <p className="sec-lead fi">
           コントの「師匠」は、画面の外でも本当にラーメンを食べ歩いています。
           フィクションとリアルが地続きになった、インザパークだけの名物企画です。

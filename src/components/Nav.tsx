@@ -15,8 +15,9 @@ export function Nav() {
     <nav id="main-nav">
       <div className="nav-stripe" />
       <div className="nav-inner">
-        <a href="#hero" className="nav-logo">
-          インザパーク
+        <a href="#hero" className="nav-logo" aria-label="インザパーク トップへ">
+          <span className="nav-logo-brush">ラーメン屋の師匠</span>
+          <span className="nav-logo-name">インザパーク</span>
         </a>
         <ul className="nav-links">
           {LINKS.map((l) => (

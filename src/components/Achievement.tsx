@@ -32,8 +32,12 @@ export function Achievement() {
   return (
     <section id="achievement">
       <div className="inner">
-        <p className="eyebrow fi">Achievement</p>
-        <h2 className="sec-title fi">実績・受賞歴</h2>
+        <p className="eyebrow fi">品評会の記録</p>
+        <h2 className="sec-title fi">受賞歴・実績</h2>
+        <p className="sec-lead fi">
+          舞台のコンテストでも評価を重ねてきました。SNSの数字だけでなく、
+          芸そのものの確かさが、お仕事をご一緒する際の安心材料になります。
+        </p>
         <div className="awards-grid">
           {AWARDS.map((a) => (
             <div

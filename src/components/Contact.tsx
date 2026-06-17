@@ -59,11 +59,11 @@ export function Contact() {
   return (
     <section id="contact">
       <div className="inner">
-        <p className="eyebrow fi">Contact</p>
+        <p className="eyebrow fi">ご注文承ります</p>
         <h2 className="sec-title fi">お仕事のご依頼</h2>
         <div className="contact-layout">
           <div className="fi">
-            <p className="contact-side-ttl">対応可能な案件</p>
+            <p className="contact-side-ttl">承れるお仕事</p>
             <div className="cases">
               {CASES.map((c) => (
                 <div className="case" key={c}>
@@ -75,10 +75,11 @@ export function Contact() {
           </div>
           <form
             ref={formRef}
-            className="fi d1"
+            className="order-slip fi d1"
             noValidate
             onSubmit={handleSubmit}
           >
+            <p className="order-slip-head">ご注文票（お見積り・ご相談は無料）</p>
             <div className="form-row2">
               <div className="fg">
                 <label htmlFor="f-company">

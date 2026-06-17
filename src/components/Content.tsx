@@ -125,10 +125,11 @@ export function Content() {
   return (
     <section id="content">
       <div className="inner">
-        <p className="eyebrow fi">Content</p>
-        <h2 className="sec-title fi">人気コンテンツ</h2>
+        <p className="eyebrow fi">本日のお品書き</p>
+        <h2 className="sec-title fi">人気の演目</h2>
         <p className="sec-lead fi">
-          ラーメン屋を舞台に繰り広げられる、師匠と弟子の笑いの世界。
+          ラーメン屋を舞台に繰り広げられる、師匠と弟子の笑いの数々。
+          横にスワイプして、お好みの一杯を選ぶようにご覧ください。
         </p>
         <div className="pattern-tags fi">
           {TAGS.map((t) => (

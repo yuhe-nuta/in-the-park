@@ -26,7 +26,7 @@ export function About() {
   return (
     <section id="about">
       <div className="inner">
-        <p className="eyebrow fi">About</p>
+        <p className="eyebrow fi">主人と弟子</p>
         <h2 className="sec-title fi">コンビ紹介</h2>
         <p className="sec-lead fi">
           ラーメン屋の「師匠」と「弟子」という設定で繰り広げるショートコント。
