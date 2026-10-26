@@ -10,6 +10,9 @@ const CASES = [
   'その他ご相談',
 ]
 
+// サーバー側(functions/api/contact.ts)と同じ判定
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 const SNS = [
   { name: 'YouTube', handle: '@ra-meninthepark', url: 'https://www.youtube.com/@ra-meninthepark' },
   { name: 'TikTok', handle: '@hagethepark', url: 'https://www.tiktok.com/@hagethepark' },
@@ -36,7 +39,10 @@ export function Contact() {
         const empty =
           field instanceof HTMLInputElement && field.type === 'checkbox'
             ? !field.checked
-            : !field.value.trim()
+            : !field.value.trim() ||
+              (field instanceof HTMLInputElement &&
+                field.type === 'email' &&
+                !EMAIL_RE.test(field.value.trim()))
         if (empty) {
           valid = false
           if (!firstInvalid) firstInvalid = field
