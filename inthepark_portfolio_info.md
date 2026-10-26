@@ -17,8 +17,10 @@
 - 太田プロエンタテインメント学院5期生
 - 早稲田大学お笑い工房LUDO出身
 
-**義明（むぎ）**（ツッコミ／弟子役）
+**義明**（ツッコミ／弟子役）
 - 岡山県津山市出身
+- 趣味：ボードゲーム
+- 虫歯経験なし
 
 ---
 
@@ -26,7 +28,7 @@
 
 - 浜松漫才グランプリ2023 **優勝**
 - 野方お笑い総選挙2024 **優勝**
-- M-1グランプリ 参加歴あり
+- キングオブコント2026 準々決勝進出
 
 ---
 
@@ -82,7 +84,7 @@
 | コアファン | ラーメン好き20〜40代男女 | 師匠キャラへの感情移入が強く、継続視聴率が高い |
 | バイラル流入層 | 10〜20代（TikTok経由） | 理不尽あるあるコントが刺さりやすい |
 | 海外視聴者 | 英語圏ラーメンファン | #ramen タグ経由で流入、セリフが少なく伝わりやすい |
-| お笑いファン | 舞台・M-1ファン層 | 受賞歴・舞台実績から「本格派芸人」として認知 |
+| お笑いファン | 舞台・賞レースのファン層 | 受賞歴・舞台実績から「本格派芸人」として認知 |
 
 ---
 
@@ -122,7 +124,7 @@
 
 | プラットフォーム | アカウント | URL |
 |----------------|-----------|-----|
-| YouTube | @ra-meninthepark | https://www.youtube.com/@ra-meninthepark |
+| YouTube | @ra-meninthepark | https://www.youtube.com/@ra-meninthepark<br>https://www.youtube.com/channel/UCA1sDVCgWfwtpvGvGezBnQw |
 | TikTok | @hagethepark | https://www.tiktok.com/@hagethepark |
 | X（旧Twitter） | @rameninthepark | https://x.com/rameninthepark |
 

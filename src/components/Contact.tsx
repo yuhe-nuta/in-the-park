@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import { ThanksOverlay } from './ThanksOverlay'
 
 const CASES = [
@@ -8,6 +8,12 @@ const CASES = [
   'テレビ・ラジオ出演',
   'コラボ企画',
   'その他ご相談',
+]
+
+const SNS = [
+  { name: 'YouTube', handle: '@ra-meninthepark', url: 'https://www.youtube.com/@ra-meninthepark' },
+  { name: 'TikTok', handle: '@hagethepark', url: 'https://www.tiktok.com/@hagethepark' },
+  { name: 'X', handle: '@rameninthepark', url: 'https://x.com/rameninthepark' },
 ]
 
 export function Contact() {
@@ -57,29 +63,42 @@ export function Contact() {
   }
 
   return (
-    <section id="contact">
+    <section id="contact" className="sec gutter" data-bg="#FFD21F">
       <div className="inner">
-        <p className="eyebrow fi">ご注文承ります</p>
-        <h2 className="sec-title fi">お仕事のご依頼</h2>
+        <p className="eyebrow rv">お仕事のご依頼</p>
+        <p className="big rv" style={{ '--d': '.08s' } as CSSProperties}>
+          一緒に、
+          <br />
+          仕事しましょう。
+        </p>
         <div className="contact-layout">
-          <div className="fi">
+          <div className="rv" style={{ '--d': '.16s' } as CSSProperties}>
             <p className="contact-side-ttl">承れるお仕事</p>
-            <div className="cases">
+            <div className="types">
               {CASES.map((c) => (
-                <div className="case" key={c}>
-                  <div className="case-dot" />
-                  {c}
-                </div>
+                <span key={c}>{c}</span>
+              ))}
+            </div>
+            <div className="sns">
+              {SNS.map((s) => (
+                <a key={s.name} className="roll" href={s.url} target="_blank" rel="noopener">
+                  <span>
+                    {s.name}
+                    <em>{s.handle}</em>
+                  </span>
+                  <span>{s.name} →</span>
+                </a>
               ))}
             </div>
           </div>
           <form
             ref={formRef}
-            className="order-slip fi d1"
+            className="order-slip rv"
+            style={{ '--d': '.24s' } as CSSProperties}
             noValidate
             onSubmit={handleSubmit}
           >
-            <p className="order-slip-head">ご注文票（お見積り・ご相談は無料）</p>
+            <p className="order-slip-head">お問い合わせフォーム（お見積り・ご相談は無料）</p>
             <div className="form-row2">
               <div className="fg">
                 <label htmlFor="f-company">
@@ -183,7 +202,7 @@ export function Contact() {
                 に同意する
               </label>
             </div>
-            <button type="submit" className="btn btn-red btn-submit">
+            <button type="submit" className="btn submit">
               送信する →
             </button>
           </form>

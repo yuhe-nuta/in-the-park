@@ -1,56 +1,38 @@
 import { useEffect } from 'react'
 
 /**
- * Ports the prototype's progressive-enhancement reveal behaviour:
- *  - `.fi` elements fade/slide in once they scroll into view (with a
- *    timeout fallback so nothing stays hidden in short viewports).
- *  - `.bar-fill[data-w]` bars animate to their target width when their
- *    `.aud-card` enters view.
- *
- * Runs once after mount; observers are torn down on unmount.
+ * Scroll-triggered reveal. `.rv` elements fade/slide in once they enter the
+ * viewport (the `.in` class also triggers the highlighter `.mk` underline
+ * inside them). The hidden start state only applies under `.js-e`, which
+ * main.tsx sets before first paint, so nothing is hidden without JS.
  */
 export function useReveal() {
   useEffect(() => {
-    const fadeObs = new IntersectionObserver(
+    const els = document.querySelectorAll<HTMLElement>('.rv')
+    const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('vis')
-            fadeObs.unobserve(e.target)
-          }
+          if (!e.isIntersecting) return
+          e.target.classList.add('in')
+          io.unobserve(e.target)
         })
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+      { threshold: 0.18 },
     )
-    document.querySelectorAll('.fi').forEach((el) => fadeObs.observe(el))
+    els.forEach((el) => io.observe(el))
 
-    // Fallback: ensure all .fi become visible even in constrained viewports.
+    // Safety net: never leave content hidden if an observer callback is missed.
     const fallback = window.setTimeout(() => {
       document
-        .querySelectorAll('.fi:not(.vis)')
-        .forEach((el) => el.classList.add('vis'))
-    }, 400)
-
-    const barObs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target
-              .querySelectorAll<HTMLElement>('.bar-fill[data-w]')
-              .forEach((bar) => {
-                bar.style.width = `${bar.dataset.w}%`
-              })
-            barObs.unobserve(e.target)
-          }
+        .querySelectorAll<HTMLElement>('.rv:not(.in)')
+        .forEach((el) => {
+          const r = el.getBoundingClientRect()
+          if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in')
         })
-      },
-      { threshold: 0.3 },
-    )
-    document.querySelectorAll('.aud-card').forEach((el) => barObs.observe(el))
+    }, 1200)
 
     return () => {
-      fadeObs.disconnect()
-      barObs.disconnect()
+      io.disconnect()
       window.clearTimeout(fallback)
     }
   }, [])

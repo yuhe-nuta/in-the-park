@@ -28,16 +28,15 @@ export function ThanksOverlay({
       }}
     >
       <div className="thanks-box">
-        <div className="thanks-icon">🍜</div>
         <h2 className="thanks-ttl" id="thanks-ttl">
-          お問い合わせありがとうございます！
+          お問い合わせありがとうございます
         </h2>
         <p className="thanks-txt">
           3営業日以内にご連絡いたします。
           <br />
           しばらくお待ちください。
         </p>
-        <button className="btn btn-red" onClick={onClose}>
+        <button className="btn acc" onClick={onClose}>
           閉じる
         </button>
       </div>

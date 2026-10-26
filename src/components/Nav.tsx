@@ -1,36 +1,31 @@
 import { useState } from 'react'
 
 const LINKS = [
-  { href: '#about', label: 'コンビ紹介', mobileLabel: 'コンビ紹介' },
-  { href: '#achievement', label: '実績', mobileLabel: '実績・受賞歴' },
-  { href: '#content', label: 'コンテンツ', mobileLabel: 'コンテンツ' },
-  { href: '#ramen', label: 'ラーメン探求', mobileLabel: '師匠のラーメン探求' },
-  { href: '#sns', label: 'SNS', mobileLabel: 'SNS実績' },
+  { href: '#stats', label: '実績' },
+  { href: '#profile', label: 'プロフィール' },
+  { href: '#history', label: '歩み' },
+  { href: '#videos', label: '動画' },
 ]
 
 export function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <nav id="main-nav">
-      <div className="nav-stripe" />
+    <header id="main-nav" className="gutter">
       <div className="nav-inner">
-        <a href="#hero" className="nav-logo" aria-label="インザパーク トップへ">
-          <span className="nav-logo-brush">ラーメン屋の師匠</span>
-          <span className="nav-logo-name">インザパーク</span>
+        <a href="#top" className="logo" aria-label="インザパーク トップへ">
+          インザパーク
         </a>
-        <ul className="nav-links">
+        <nav className="nav-links" aria-label="メニュー">
           {LINKS.map((l) => (
-            <li key={l.href}>
-              <a href={l.href}>{l.label}</a>
-            </li>
-          ))}
-          <li>
-            <a href="#contact" className="nav-cta">
-              お仕事のご依頼
+            <a key={l.href} className="l" href={l.href}>
+              {l.label}
             </a>
-          </li>
-        </ul>
+          ))}
+          <a className="btn sm mag" href="#contact">
+            お仕事のご依頼
+          </a>
+        </nav>
         <button
           className="nav-burger"
           aria-label="メニューを開く"
@@ -42,16 +37,16 @@ export function Nav() {
           <span />
         </button>
       </div>
-      <nav className={`nav-mobile${open ? ' open' : ''}`}>
+      <nav className={`nav-mobile${open ? ' open' : ''}`} aria-label="モバイルメニュー">
         {LINKS.map((l) => (
           <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
-            {l.mobileLabel}
+            {l.label}
           </a>
         ))}
         <a href="#contact" onClick={() => setOpen(false)}>
           お仕事のご依頼
         </a>
       </nav>
-    </nav>
+    </header>
   )
 }

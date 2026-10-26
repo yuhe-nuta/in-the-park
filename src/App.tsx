@@ -1,37 +1,41 @@
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
-import { About } from './components/About'
-import { Achievement } from './components/Achievement'
-import { Content } from './components/Content'
-import { Sns } from './components/Sns'
-import { RamenQuest } from './components/RamenQuest'
+import { Stats } from './components/Stats'
+import { Profile } from './components/Profile'
+import { History } from './components/History'
+import { Series } from './components/Series'
+import { Videos } from './components/Videos'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
-import { Raimon } from './components/Raimon'
 import { useReveal } from './hooks/useReveal'
 import { useAnchorScroll } from './hooks/useAnchorScroll'
-import heroPhoto from './assets/hero.png'
+import { useSectionTheme } from './hooks/useSectionTheme'
+import { useScrollEffects } from './hooks/useScrollEffects'
+import { usePointerEffects } from './hooks/usePointerEffects'
 
 function App() {
   useReveal()
   useAnchorScroll()
+  useSectionTheme()
+  useScrollEffects()
+  usePointerEffects()
 
   return (
     <>
+      <div className="progress" aria-hidden="true">
+        <i />
+      </div>
+      <div className="cursor" aria-hidden="true" />
       <Nav />
-      <Hero photoSrc={heroPhoto} />
-      <Raimon tone="cha" />
-      <About />
-      <Raimon tone="sumi" />
-      <Achievement />
-      <Raimon tone="cha" />
-      <Content />
-      <Raimon tone="sumi" />
-      <RamenQuest />
-      <Raimon tone="cha" />
-      <Sns />
-      <Raimon tone="sumi" accent="gold" />
-      <Contact />
+      <main id="top">
+        <Hero />
+        <Stats />
+        <Profile />
+        <History />
+        <Series />
+        <Videos />
+        <Contact />
+      </main>
       <Footer />
     </>
   )
