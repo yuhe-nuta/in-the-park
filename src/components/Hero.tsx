@@ -1,5 +1,3 @@
-import heroCut from '../assets/hero-cut.png'
-
 const RECORDS = [
   '浜松漫才グランプリ2023 優勝',
   '野方お笑い総選挙2024 優勝',
@@ -25,8 +23,12 @@ export function Hero() {
         </h1>
         <img
           className="photo"
-          src={heroCut}
+          src="/hero-cut.webp"
           alt="インザパークのふたり。笑顔でこちらを向いて並んでいる"
+          width={1037}
+          height={910}
+          fetchPriority="high"
+          decoding="async"
         />
         <p className="hero-copy">
           お笑いコンビ

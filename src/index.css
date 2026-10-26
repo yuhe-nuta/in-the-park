@@ -253,12 +253,12 @@ section { position: relative; }
   max-width: 98%;
   object-fit: contain;
   transform: translate(-50%, calc(var(--py, 0px) * 0.25));
-  animation: up 1.1s var(--ease) 0.5s both;
+  animation: up 0.9s var(--ease) 0.1s both;
   will-change: transform;
 }
 @keyframes up {
-  from { opacity: 0; margin-bottom: -6%; }
-  to { opacity: 1; margin-bottom: 0; }
+  from { margin-bottom: -6%; }
+  to { margin-bottom: 0; }
 }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 .hero-copy {
