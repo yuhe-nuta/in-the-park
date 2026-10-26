@@ -4,7 +4,7 @@ const LINKS = [
   { href: '#stats', label: '実績' },
   { href: '#profile', label: 'プロフィール' },
   { href: '#history', label: '歩み' },
-  { href: '#videos', label: '動画' },
+  { href: '#series', label: 'ラーメン屋の師匠' },
 ]
 
 export function Nav() {
