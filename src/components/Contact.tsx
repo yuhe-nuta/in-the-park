@@ -19,8 +19,10 @@ const SNS = [
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null)
   const [showThanks, setShowThanks] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
     let valid = true
@@ -48,8 +50,25 @@ export function Contact() {
       })
 
     if (valid) {
-      setShowThanks(true)
-      form.reset()
+      if (sending) return
+      const fd = new FormData(form)
+      const payload = { ...Object.fromEntries(fd.entries()), privacy: fd.has('privacy') }
+      setSending(true)
+      setError('')
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!res.ok) throw new Error(String(res.status))
+        setShowThanks(true)
+        form.reset()
+      } catch {
+        setError('送信できませんでした。時間をおいて、もう一度お試しください。')
+      } finally {
+        setSending(false)
+      }
     } else if (firstInvalid) {
       const nav = document.getElementById('main-nav')
       const navH = nav ? nav.offsetHeight : 0
@@ -202,8 +221,21 @@ export function Contact() {
                 に同意する
               </label>
             </div>
-            <button type="submit" className="btn submit">
-              送信する →
+            <input
+              type="text"
+              name="website"
+              className="hp"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            {error && (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            )}
+            <button type="submit" className="btn submit" disabled={sending}>
+              {sending ? '送信中…' : '送信する →'}
             </button>
           </form>
         </div>

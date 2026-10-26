@@ -682,3 +682,8 @@ footer { padding-block: 28px 48px; }
   .js-e .rv { opacity: 1; transform: none; }
   .track-in { animation: none; }
 }
+
+/* お問い合わせフォーム: ハニーポット欄と送信エラー */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-error { color: #b3261e; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+.submit:disabled { opacity: 0.6; cursor: wait; }
