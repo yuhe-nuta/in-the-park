@@ -333,7 +333,7 @@ section { position: relative; }
   .word .l3 { top: calc(15.4% + 9cqw); font-size: 8.8cqw; }
   .photo { left: 50%; height: 68%; }
   .hero-copy { display: none; }
-  .hero-cta { left: 3cqw; bottom: 3%; }
+  .hero-cta { left: 3cqw; bottom: 52px; }
   .scrollcue { display: none; }
 }
 
