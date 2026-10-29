@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://in-the-park.pages.dev/sitemap.xml
